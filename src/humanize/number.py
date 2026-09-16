@@ -2,10 +2,6 @@
 
 from __future__ import annotations
 
-__lazy_modules__ = {"bisect"}
-
-import bisect
-
 from .i18n import _gettext as _
 from .i18n import _gettext_noop as N_
 from .i18n import _ngettext, decimal_separator, thousands_separator
@@ -272,6 +268,8 @@ def intword(value: NumberOrString, format: str = "%.1f") -> str:
 
     if value < powers[0]:
         return f"{negative_prefix}{value}"
+
+    import bisect
 
     ordinal = bisect.bisect_right(powers, value)
     largest_ordinal = ordinal == len(powers)
